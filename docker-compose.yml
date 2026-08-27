@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # Database Service with PostGIS
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: binsinag-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: securepassword123
+      POSTGRES_DB: binsinag
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Automatically run schema.sql on database initialization
+      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+
+  # Redis for Caching and WebSockets Pub/Sub
+  redis:
+    image: redis:7-alpine
+    container_name: binsinag-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  # OSRM (Open Source Routing Machine) Service
+  # Note: To run this service, you need to first download OpenStreetMap data (e.g. .osm.pbf)
+  # and run the extraction steps in the OSRM directory.
+  # routing-engine:
+  #   image: osrm/osrm-backend
+  #   container_name: binsinag-routing
+  #   restart: always
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - ./osrm-data:/data
+  #   command: osrm-routed --algorithm mld /data/philippines-latest.osrm
+
+volumes:
+  pgdata:
+  redisdata:
