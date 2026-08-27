@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd lgu-dashboard && npm install && npm run build",
+  "outputDirectory": "lgu-dashboard/.next",
+  "framework": "nextjs"
+}
