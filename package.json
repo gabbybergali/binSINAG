@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd lgu-dashboard && npm run build",
+    "build": "cd lgu-dashboard && npm install && npm run build",
     "dev": "cd lgu-dashboard && npm run dev"
   }
 }
