@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd lgu-dashboard && npm run build",
+    "build": "cd lgu-dashboard && npm install --include=dev && npm run build",
     "dev": "cd lgu-dashboard && npm run dev"
   },
   "dependencies": {
     "next": "16.3.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "@tailwindcss/postcss": "^4.0.0",
+    "tailwindcss": "^4.0.0"
   }
 }
